@@ -1,0 +1,64 @@
+{
+  "course": {
+    "title": "Team Lead Academy",
+    "subtitle": "Прокачай свои лидерские навыки",
+    "totalLessons": 12,
+    "totalAchievements": 15,
+    "characterName": "Алекс"
+  },
+  "game": {
+    "xpPerLevel": {
+      "level1": 1000,
+      "level2": 2000,
+      "level3": 3000
+    },
+    "maxSkillLevel": 10,
+    "skills": [
+      {
+        "id": "people-management",
+        "name": "Управление людьми",
+        "icon": "people",
+        "initialValue": 2
+      },
+      {
+        "id": "project-management",
+        "name": "Управление проектами",
+        "icon": "projects",
+        "initialValue": 1
+      },
+      {
+        "id": "communication",
+        "name": "Коммуникация",
+        "icon": "communication",
+        "initialValue": 3
+      },
+      {
+        "id": "emotional-intelligence",
+        "name": "Эмоциональный интеллект",
+        "icon": "emotional-intelligence",
+        "initialValue": 2
+      },
+      {
+        "id": "team-development",
+        "name": "Развитие команды",
+        "icon": "team-development",
+        "initialValue": 1
+      }
+    ]
+  },
+  "ui": {
+    "maxWidth": "780px",
+    "theme": {
+      "primaryColor": "#4A90E2",
+      "secondaryColor": "#50C878",
+      "accentColor": "#FF6B6B",
+      "textColor": "#2C3E50",
+      "backgroundColor": "#F8F9FA"
+    }
+  },
+  "storage": {
+    "key": "team-lead-course-progress"
+  }
+}
+
+
