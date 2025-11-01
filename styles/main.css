@@ -528,6 +528,13 @@ p {
   overflow-y: auto;
   max-height: calc(100vh - 150px);
   flex-shrink: 0;
+  margin-left: 52px;
+}
+
+@media (max-width: 768px) {
+  .intro-step-1-card {
+    margin-left: 0;
+  }
 }
 
 /* Заголовок */
@@ -644,7 +651,7 @@ p {
 .intro1-alex {
   width: auto;
   height: auto;
-  max-width: 320px;
+  max-width: 390px;
   max-height: 100%;
   object-fit: contain;
 }
