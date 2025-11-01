@@ -1,0 +1,92 @@
+{
+  "characters": [
+    {
+      "id": "alex",
+      "name": "Алекс",
+      "role": "Team Lead",
+      "age": 28,
+      "description": "Главный герой курса. Недавно стал тимлидом, учится быть лидером.",
+      "states": [
+        "neutral",
+        "nervous",
+        "thoughtful",
+        "confident",
+        "happy",
+        "worried",
+        "celebrating"
+      ]
+    },
+    {
+      "id": "maria",
+      "name": "Мария",
+      "role": "Senior Developer",
+      "age": 35,
+      "description": "Опытный разработчик, закрытая в начале, затем открывается.",
+      "states": [
+        "neutral",
+        "closed",
+        "open",
+        "focused",
+        "concerned"
+      ]
+    },
+    {
+      "id": "denis",
+      "name": "Денис",
+      "role": "Middle Developer",
+      "age": 26,
+      "description": "Энергичный разработчик, активный член команды.",
+      "states": [
+        "energetic",
+        "happy",
+        "stressed",
+        "focused",
+        "conflict"
+      ]
+    },
+    {
+      "id": "lena",
+      "name": "Лена",
+      "role": "Designer",
+      "age": 24,
+      "description": "Креативный дизайнер, переживает выгорание в уроке 7.",
+      "states": [
+        "creative",
+        "unconfident",
+        "burned-out",
+        "recovering",
+        "happy",
+        "working"
+      ]
+    },
+    {
+      "id": "igor",
+      "name": "Игорь",
+      "role": "QA Engineer",
+      "age": 30,
+      "description": "Перфекционист, внимательный к деталям.",
+      "states": [
+        "focused",
+        "stressed",
+        "detail-oriented",
+        "satisfied"
+      ]
+    },
+    {
+      "id": "katya",
+      "name": "Катя",
+      "role": "Junior Developer",
+      "age": 22,
+      "description": "Новичок в команде, растет под руководством Алекса.",
+      "states": [
+        "excited",
+        "unconfident",
+        "learning",
+        "improving",
+        "happy"
+      ]
+    }
+  ]
+}
+
+

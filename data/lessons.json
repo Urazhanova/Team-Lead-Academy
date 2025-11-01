@@ -1,0 +1,120 @@
+{
+  "intro": {
+    "id": 0,
+    "title": "Введение",
+    "duration": "10-15 минут",
+    "unlocked": true,
+    "isIntro": true,
+    "heading": "Team Lead Academy: Прокачай свои лидерские навыки",
+    "description": "Добро пожаловать в интерактивный курс для будущих лидеров!",
+    "characterName": "Алекс",
+    "characterLevel": "Новый тимлид",
+    "characterTeamSize": "5 человек"
+  },
+  "lessons": [
+    {
+      "id": 1,
+      "module": 1,
+      "title": "Твоя первая команда",
+      "duration": "15-20 минут",
+      "unlocked": true
+    },
+    {
+      "id": 2,
+      "module": 1,
+      "title": "Искусство обратной связи",
+      "duration": "15-20 минут",
+      "unlocked": false
+    },
+    {
+      "id": 3,
+      "module": 1,
+      "title": "Планирование спринта",
+      "duration": "15-20 минут",
+      "unlocked": false
+    },
+    {
+      "id": 4,
+      "module": 1,
+      "title": "Челлендж: Конец первой недели",
+      "duration": "20-25 минут",
+      "unlocked": false
+    },
+    {
+      "id": 5,
+      "module": 2,
+      "title": "Конфликт в команде",
+      "duration": "15-20 минут",
+      "unlocked": false
+    },
+    {
+      "id": 6,
+      "module": 2,
+      "title": "Когда дедлайн горит",
+      "duration": "15-20 минут",
+      "unlocked": false
+    },
+    {
+      "id": 7,
+      "module": 2,
+      "title": "Выгорание сотрудника",
+      "duration": "20-25 минут",
+      "unlocked": false
+    },
+    {
+      "id": 8,
+      "module": 2,
+      "title": "Сложный разговор: увольнение",
+      "duration": "20-25 минут",
+      "unlocked": false
+    },
+    {
+      "id": 9,
+      "module": 3,
+      "title": "Видение и стратегия команды",
+      "duration": "15-20 минут",
+      "unlocked": false
+    },
+    {
+      "id": 10,
+      "module": 3,
+      "title": "Масштабирование: от 5 к 15 человек",
+      "duration": "15-20 минут",
+      "unlocked": false
+    },
+    {
+      "id": 11,
+      "module": 3,
+      "title": "Развитие лидеров в команде",
+      "duration": "15-20 минут",
+      "unlocked": false
+    },
+    {
+      "id": 12,
+      "module": 3,
+      "title": "Финальный экзамен: Team Lead Simulator",
+      "duration": "30-40 минут",
+      "unlocked": false,
+      "isExam": true
+    }
+  ],
+  "modules": [
+    {
+      "id": 1,
+      "title": "Первые шаги",
+      "lessons": [1, 2, 3, 4]
+    },
+    {
+      "id": 2,
+      "title": "Сложные ситуации",
+      "lessons": [5, 6, 7, 8]
+    },
+    {
+      "id": 3,
+      "title": "Стратегическое лидерство",
+      "lessons": [9, 10, 11, 12]
+    }
+  ]
+}
+
+
