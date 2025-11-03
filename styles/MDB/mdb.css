@@ -1,0 +1,10 @@
+/* ============================================
+   MDB5 Integrated Stylesheet
+   (Material Design Bootstrap 5)
+   Integrated with Brand Variables
+   ============================================ */
+
+@import url('./mdb-typography.css');
+@import url('./mdb-grid.css');
+@import url('./mdb-components.css');
+@import url('./mdb-utilities.css');

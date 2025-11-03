@@ -35,6 +35,11 @@
   --shadow-lg:0 10px 24px rgba(0,0,0,.10);
 
   --container-max:1200px; --grid-gutter:24px;
+
+  --card-bg:var(--color-neutral-0);
+  --mbd-radius-2xl:var(--radius-lg);
+  --mbd-shadow-lg:var(--shadow-lg);
+  --mbd-space-6:var(--space-2xl);
 }
 /* Reset + base */
 *{box-sizing:border-box}

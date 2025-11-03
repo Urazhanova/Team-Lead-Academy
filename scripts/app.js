@@ -167,10 +167,10 @@ const IntroState = (() => {
   return {
     getCurrentStep: () => currentStep,
     setCurrentStep: (step) => {
-      currentStep = Math.max(1, Math.min(4, step));
+      currentStep = Math.max(1, Math.min(6, step));
     },
     nextStep: () => {
-      currentStep = Math.min(4, currentStep + 1);
+      currentStep = Math.min(6, currentStep + 1);
     },
     prevStep: () => {
       currentStep = Math.max(1, currentStep - 1);
@@ -182,7 +182,7 @@ const IntroState = (() => {
 })();
 
 /**
- * Страница Введения (4 независимых экрана)
+ * Страница Введения (5 независимых экранов)
  */
 function renderIntro() {
   const app = document.getElementById('app');
@@ -192,77 +192,171 @@ function renderIntro() {
     const intro = data?.intro || {};
     const currentStep = IntroState.getCurrentStep();
 
-    // Экран 1: Приветствие и проблемы Алекса
-    const renderStep1 = () => `
-      <div class="intro-screen intro-step-1-screen" id="intro-step-1" aria-live="polite" role="region" aria-label="Экран 1: Приветствие">
-        <div class="intro-step-1-wrapper">
-          <div class="intro-step-1-left">
-            <div class="card intro-step-1-card fade-in">
-              <h2 class="intro-step-1-title" tabindex="-1" autofocus>👋 Привет, я Алекс!</h2>
+    // Экран 1A: Быстрое приветствие Алекса
+    const renderStep1a = () => `
+      <div class="mbd-scope tl-academy screen-1a">
+        <div class="tl-layout intro-screen intro-step-1a-screen" id="intro-step-1a" aria-live="polite" role="region" aria-label="Экран 1A: Приветствие">
+        <div class="tl-content">
+        <!-- Основной контент -->
+        <div class="row g-5 mb-5">
+          <!-- Левая колонна: Текст приветствия -->
+          <div class="col-12 col-lg-6 d-flex align-items-center">
+            <div class="card intro-card bubble-hello shadow-lg fade-in w-100">
+              <h2 class="card-title type-reveal" tabindex="-1" autofocus>👋 Привет, я Алекс!</h2>
 
-              <p class="intro-step-1-text mt-lg">Я только что стал руководителем команды из 5 человек. Честно? Я немного нервничаю...</p>
-
-              <p class="intro-step-1-label mt-lg"><strong>У меня куча вопросов:</strong></p>
-              <ul class="intro-step-1-list">
-                <li>❓ Как правильно давать обратную связь?</li>
-                <li>❓ Что делать, если в команде конфликт?</li>
-                <li>❓ Как мотивировать людей?</li>
-                <li>❓ Как не выгореть самому?</li>
-              </ul>
-
-              <p class="intro-step-1-footer mt-lg"><strong>Звучит знакомо? Тогда этот курс для тебя!</strong></p>
+              <p class="card-text type-reveal mt-4">Я только что стал руководителем команды из 5 человек. Честно? Я немного нервничаю...</p>
             </div>
           </div>
 
-          <div class="intro-step-1-right">
-            <div class="intro-step-1-image fade-in">
-              <img src="assets/images/characters/alex/heading_cl.png" alt="Иллюстрация" class="intro-step-1-portrait intro1-alex" onerror="this.style.display='none'">
+          <!-- Правая колонна: Изображение -->
+          <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center fade-in">
+            <div class="alex-intro-anim" style="max-width: 300px; text-align: center;">
+              <img src="assets/images/characters/alex/heading_cl.png" alt="Портрет Алекса" class="img-fluid rounded-lg" style="max-height: 400px; object-fit: contain;" onerror="this.style.display='none'">
             </div>
           </div>
         </div>
+        </div>
 
-        <div class="intro-nav intro1-actions">
-          <button class="btn btn--secondary" disabled aria-label="Предыдущий экран (недоступно)">← Назад</button>
-          <button class="btn btn--primary" onclick="handleIntroNext()" aria-label="Следующий экран">Далее →</button>
+        <!-- Навигация -->
+        <div class="tl-nav-center intro1a-actions">
+          <button class="tl-btn tl-btn--ghost" disabled aria-label="Предыдущий экран (недоступно)">← Назад</button>
+          <button class="tl-btn tl-btn--primary" onclick="handleIntroNext()" aria-label="Следующий экран">Далее →</button>
+        </div>
+        </div>
+      </div>
+    `;
+
+    // Экран 1B: Вопросы и проблемы Алекса (Экран 2 по новой нумерации)
+    const renderStep1b = () => `
+      <div class="mbd-scope tl-academy screen-1b">
+        <div class="tl-layout intro-screen intro-step-1b-screen" id="intro-step-1b" aria-live="polite" role="region" aria-label="Экран 1B: Вопросы" style="animation: none !important;">
+        <div class="tl-content" style="animation: none !important;">
+        <!-- Основной контент -->
+        <div class="row g-5 mb-5" style="animation: none !important;">
+          <!-- Левая колонна: Вопросы и CTA -->
+          <div class="col-12 col-lg-6 d-flex align-items-center" style="animation: none !important;">
+            <div class="card intro-card shadow-lg w-100" style="animation: none !important;">
+              <p class="fw-bold" style="animation: none !important;">У меня куча вопросов:</p>
+              <ul class="list-unstyled mt-2 ps-3" style="animation: none !important;">
+                <li class="mb-2" style="animation: none !important;">❓ Как правильно давать обратную связь?</li>
+                <li class="mb-2" style="animation: none !important;">❓ Что делать, если в команде конфликт?</li>
+                <li class="mb-2" style="animation: none !important;">❓ Как мотивировать людей?</li>
+                <li class="mb-2" style="animation: none !important;">❓ Как не выгореть самому?</li>
+              </ul>
+
+              <div class="alert alert-accent mt-5" role="status" style="animation: none !important;">
+                <strong style="animation: none !important;">✨ Звучит знакомо? Тогда этот курс для тебя!</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Правая колонна: Изображение -->
+          <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center" style="animation: none !important;">
+            <div style="max-width: 300px; text-align: center; animation: none !important;">
+              <img src="assets/images/characters/alex/heading_cl.png" alt="Портрет Алекса" class="img-fluid rounded-lg" style="max-height: 400px; object-fit: contain; animation: none !important;" onerror="this.style.display='none'">
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- Навигация -->
+        <div class="tl-nav-center intro1b-actions" style="animation: none !important;">
+          <button class="tl-btn tl-btn--ghost" onclick="handleIntroPrev()" aria-label="Предыдущий экран">← Назад</button>
+          <button class="tl-btn tl-btn--primary" onclick="handleIntroNext()" aria-label="Следующий экран">Далее →</button>
+        </div>
+        </div>
+      </div>
+    `;
+
+    // Экран 1: Приветствие и проблемы Алекса
+    const renderStep1 = () => `
+      <div class="mbd-scope">
+        <div class="tl-layout intro-screen intro-step-1-screen screen-welcome" id="intro-step-1" aria-live="polite" role="region" aria-label="Экран 1: Приветствие">
+        <div class="tl-content">
+        <!-- Основной контент -->
+        <div class="row g-5 mb-5">
+          <!-- Левая колонна: Текст и вопросы -->
+          <div class="col-12 col-lg-6 d-flex align-items-center">
+            <div class="card intro-card shadow-lg fade-in w-100">
+              <h2 class="card-title" tabindex="-1" autofocus>👋 Привет, я Алекс!</h2>
+
+              <p class="card-text mt-4">Я только что стал руководителем команды из 5 человек. Честно? Я немного нервничаю...</p>
+
+              <p class="fw-bold mt-4">У меня куча вопросов:</p>
+              <ul class="list-unstyled mt-2 ps-3">
+                <li class="mb-2">❓ Как правильно давать обратную связь?</li>
+                <li class="mb-2">❓ Что делать, если в команде конфликт?</li>
+                <li class="mb-2">❓ Как мотивировать людей?</li>
+                <li class="mb-2">❓ Как не выгореть самому?</li>
+              </ul>
+
+              <div class="alert alert-accent mt-5" role="status">
+                <strong>✨ Звучит знакомо? Тогда этот курс для тебя!</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Правая колонна: Изображение -->
+          <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center fade-in">
+            <div style="max-width: 300px; text-align: center;">
+              <img src="assets/images/characters/alex/heading_cl.png" alt="Портрет Алекса" class="img-fluid rounded-lg" style="max-height: 400px; object-fit: contain;" onerror="this.style.display='none'">
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- Навигация -->
+        <div class="tl-nav-center intro1-actions">
+          <button class="btn btn-secondary" disabled aria-label="Предыдущий экран (недоступно)">← Назад</button>
+          <button class="btn btn-primary" onclick="handleIntroNext()" aria-label="Следующий экран">Далее →</button>
+        </div>
         </div>
       </div>
     `;
 
     // Экран 2: История Алекса
     const renderStep2 = () => `
-      <div class="intro-screen" id="intro-step-2" aria-live="polite" role="region" aria-label="Экран 2: История Алекса">
-        <div class="fade-in">
-          <div class="intro-step-2-story-container card intro-story-card">
-            <div class="intro-story-left">
-              <h3 class="intro-story-heading" tabindex="-1" autofocus>📖 История Алекса</h3>
-              <div class="intro-story-image">
-                <img src="assets/images/characters/alex/working.png" alt="Алекс работает" class="intro-story-portrait" onerror="this.parentElement.style.display='none'">
+      <div class="mbd-scope">
+        <div class="intro-screen screen-story" id="intro-step-2" aria-live="polite" role="region" aria-label="Экран 2: История Алекса">
+          <div class="tl-content" style="animation: none !important;">
+          <div class="card shadow-lg" style="animation: none !important;">
+          <div style="display: flex; gap: 32px; align-items: center;">
+            <!-- Левая колонна: Изображение -->
+            <div style="flex: 0 0 auto; width: 40%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+              <h3 style="font-size: 24px; font-weight: 700; color: var(--color-primary); text-align: center; margin-bottom: 24px; animation: none !important;">📖 История Алекса</h3>
+              <div style="max-width: 280px; text-align: center; animation: none !important;">
+                <img src="assets/images/characters/alex/working.png" alt="Алекс работает" style="max-width: 100%; max-height: 350px; object-fit: contain; border-radius: 12px; animation: none !important;">
               </div>
             </div>
 
-            <div class="intro-story-text">
-              <p>
+            <!-- Правая колонна: Текст истории -->
+            <div style="flex: 1; font-size: 15px; color: var(--color-neutral-700); line-height: 1.8; animation: none !important;">
+              <p style="margin-bottom: 16px; animation: none !important;">
                 Алекс 28 лет. Четыре года подряд он писал код в нашей команде — один из лучших разработчиков. Его код чистый, дедлайны он держит, баги ловит сам. Коллеги его уважают.
               </p>
 
-              <p class="mt-md">
+              <p style="margin: 16px 0; animation: none !important;">
                 Неделю назад его повысили. Теперь он тимлид — руководит 5 разработчиками: Марией (senior, опытная), Денисом (middle, энергичный), Леной (дизайнер, креативная), Игорем (QA, перфекционист) и Катей (junior, учится).
               </p>
 
-              <p class="mt-md">
+              <p style="margin: 16px 0; animation: none !important;">
                 В первый день Алекс понял: писать код было проще. Как мотивировать команду? Что делать с конфликтами? Как уберечь людей от выгорания? Как самому не выгореть? Вопросов больше, чем ответов.
               </p>
 
-              <p class="mt-md">
+              <p style="margin: 16px 0; animation: none !important;">
                 Но Алекс не сдаётся. Он готов учиться. Этот курс — его путь к настоящему лидерству.
               </p>
             </div>
           </div>
-
-          <div class="intro-nav mt-lg">
-            <button class="btn btn--secondary" onclick="handleIntroPrev()" aria-label="Предыдущий экран">← Назад</button>
-            <button class="btn btn--primary" onclick="handleIntroNext()" id="intro-next-2" aria-label="Следующий экран">Далее →</button>
           </div>
+          </div>
+
+          <!-- Навигация -->
+          <div class="tl-nav-center" style="animation: none !important;">
+            <button class="tl-btn tl-btn--ghost" onclick="handleIntroPrev()" aria-label="Предыдущий экран">← Назад</button>
+            <button class="tl-btn tl-btn--primary" onclick="handleIntroNext()" id="intro-next-2" aria-label="Следующий экран">Далее →</button>
+          </div>
+        </div>
         </div>
       </div>
     `;
@@ -277,37 +371,51 @@ function renderIntro() {
         { name: 'Развитие команды', current: 1, max: 10 }
       ];
 
-      const skillsHtml = skills.map((skill, idx) => `
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">${skill.name}</span>
-            <span class="skill-value">${skill.current}/${skill.max}</span>
+      const skillsHtml = skills.map((skill, idx) => {
+        const percent = (skill.current / skill.max) * 100;
+        return `
+        <div class="mb-4">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="fw-medium">${skill.name}</span>
+            <span class="badge badge-primary">${skill.current}/${skill.max}</span>
           </div>
-          <div class="skill-bar-container">
-            <div class="skill-bar" style="--skill-percent: ${(skill.current / skill.max) * 100}%; --skill-delay: ${idx * 0.1}s"></div>
+          <div class="progress" style="height: 8px; background-color: var(--color-neutral-200);">
+            <div class="progress-fill" style="--skill-width: ${percent}%; background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); height: 100%; border-radius: 4px;" data-width="${percent}%"></div>
           </div>
         </div>
-      `).join('');
+      `}).join('');
 
       return `
-        <div class="intro-screen" id="intro-step-3" aria-live="polite" role="region" aria-label="Экран 3: Навыки Алекса">
-          <div class="fade-in">
-            <div class="intro-step-3-skills-container card intro-skills-card">
-              <div class="intro-step-3-skills-content">
-                <h2 class="intro-skills-heading" tabindex="-1" autofocus>💪 Навыки Алекса</h2>
-                <div class="skills-list">
-                  ${skillsHtml}
+        <div class="mbd-scope">
+          <div class="intro-screen screen-skills screen-3" id="intro-step-3" aria-live="polite" role="region" aria-label="Экран 3: Навыки Алекса">
+            <div class="tl-content">
+            <div class="row g-4 mb-5">
+              <!-- Левая колонна: Навыки (col-12 col-lg-7) -->
+              <div class="col-12 col-lg-7">
+                <div class="card shadow-lg h-100">
+                  <h2 class="card-title" tabindex="-1" autofocus>💪 Навыки Алекса</h2>
+                  <p class="card-text text-muted mt-3">Вот с какими навыками Алекс начинает свой путь лидера:</p>
+                  <div class="mt-5">
+                    ${skillsHtml}
+                  </div>
                 </div>
               </div>
 
-              <div class="intro-step-3-image">
-                <img src="assets/images/characters/alex/friendly.png" alt="Алекс" class="intro-step-3-portrait" onerror="this.parentElement.style.display='none'">
+              <!-- Правая колонна: Изображение (col-12 col-lg-5) -->
+              <div class="col-12 col-lg-5 d-flex align-items-center justify-content-center">
+                <div class="card shadow-lg h-100 w-100 d-flex align-items-center justify-content-center" style="min-height: 400px;">
+                  <div style="max-width: 280px; text-align: center;">
+                    <img src="assets/images/characters/alex/friendly.png" alt="Портрет Алекса" class="img-fluid rounded-lg" style="max-height: 380px; object-fit: contain;" onerror="this.parentElement.style.display='none'">
+                  </div>
+                </div>
               </div>
             </div>
+            </div>
 
-            <div class="intro-nav mt-lg">
-              <button class="btn btn--secondary" onclick="handleIntroPrev()" aria-label="Предыдущий экран">← Назад</button>
-              <button class="btn btn--primary" onclick="handleIntroNext()" aria-label="Следующий экран">Далее →</button>
+            <!-- Навигация -->
+            <div class="tl-nav-center">
+              <button class="tl-btn tl-btn--ghost" onclick="handleIntroPrev()" aria-label="Предыдущий экран">← Назад</button>
+              <button class="tl-btn tl-btn--primary" onclick="handleIntroNext()" aria-label="Следующий экран">Далее →</button>
             </div>
           </div>
         </div>
@@ -316,37 +424,99 @@ function renderIntro() {
 
     // Экран 4: Встреча с персонажем и старт
     const renderStep4 = () => `
-      <div id="intro-step-4" aria-live="polite" role="region" aria-label="Экран 4: Что ты получишь">
-        <img class="intro4-bg" src="assets/images/scenes/meeting.png?v=6" alt="" aria-hidden="true">
-        <div class="intro-step-4-content">
-          <div class="intro4-card fade-in">
-            <div class="intro-step-4-section">
-              <h2 class="intro-step-4-title" tabindex="-1" autofocus>✨ Что ты получишь</h2>
-              <ul class="intro-step-4-list">
-                <li>💡 Навыки управления людьми и проектами</li>
-                <li>🤝 Умение давать обратную связь и слушать</li>
-                <li>⚡ Стратегии разрешения конфликтов</li>
-                <li>🛡️ Защиту от выгорания — свою и команды</li>
-                <li>📈 Путь развития от лидера 5 человек к масштабированию</li>
-              </ul>
-            </div>
+      <div class="mbd-scope">
+        <div class="intro-screen screen-offers" id="intro-step-4" aria-live="polite" role="region" aria-label="Экран 4: Что ты получишь">
+          <!-- Фоновое изображение (если нужно) -->
+          <img class="intro4-bg" src="assets/images/scenes/meeting.png?v=6" alt="" aria-hidden="true" style="display: none;">
 
-            <div class="intro-step-4-section intro-step-4-section-second">
-              <h2 class="intro-step-4-title">⚙️ Как это работает</h2>
-              <p class="intro-step-4-text">Каждый урок — это интерактивное путешествие в реальные сценарии. Ты будешь:</p>
-              <ul class="intro-step-4-list">
-                <li>🎬 Следить за историей Алекса и его команды</li>
-                <li>🤔 Разбирать сложные ситуации через кейсы</li>
-                <li>✅ Выполнять практические упражнения</li>
-                <li>🎯 Зарабатывать XP и разблокировать новые уровни</li>
-              </ul>
+          <div class="tl-content">
+          <!-- Основной контент с фоном -->
+          <div class="row g-5 mb-5" style="position: relative; background-image: url('assets/images/scenes/meeting.png?v=6'); background-size: cover; background-position: center; min-height: 500px;">
+            <!-- Карточка "Что ты получишь" справа поверх фона -->
+            <div class="col-12 col-md-6 col-lg-5 d-flex align-items-start" style="margin-left: auto; position: relative; z-index: 2;">
+              <div class="card shadow-lg w-100">
+                <h2 class="card-title" tabindex="-1" autofocus>✨ Что ты получишь</h2>
+                <ul class="list-unstyled mt-4">
+                  <li class="d-flex gap-3 mb-3">
+                    <span class="text-primary fw-bold">💡</span>
+                    <span>Навыки управления людьми и проектами</span>
+                  </li>
+                  <li class="d-flex gap-3 mb-3">
+                    <span class="text-primary fw-bold">🤝</span>
+                    <span>Умение давать обратную связь и слушать</span>
+                  </li>
+                  <li class="d-flex gap-3 mb-3">
+                    <span class="text-primary fw-bold">⚡</span>
+                    <span>Стратегии разрешения конфликтов</span>
+                  </li>
+                  <li class="d-flex gap-3 mb-3">
+                    <span class="text-primary fw-bold">🛡️</span>
+                    <span>Защиту от выгорания — свою и команды</span>
+                  </li>
+                  <li class="d-flex gap-3 mb-3">
+                    <span class="text-primary fw-bold">📈</span>
+                    <span>Путь развития от лидера 5 человек к масштабированию</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="intro-step-4-nav">
-          <button class="btn btn--secondary" onclick="handleIntroPrev()" aria-label="Предыдущий экран">← Назад</button>
-          <button class="btn btn--primary" onclick="Router.navigate('#/lesson/1')" aria-label="Начать первый урок">Начать Урок 1 🚀</button>
+          <!-- Навигация и CTA -->
+          <div class="tl-nav-center" style="padding-top: 40px; padding-bottom: 8px;">
+            <button class="tl-btn tl-btn--ghost" onclick="handleIntroPrev()" aria-label="Предыдущий экран">← Назад</button>
+            <button class="tl-btn tl-btn--primary" onclick="handleIntroNext()" aria-label="Следующий экран">Далее →</button>
+          </div>
+        </div>
+        </div>
+      </div>
+    `;
+
+    // Экран 6: Как это работает
+    const renderStep5 = () => `
+      <div class="mbd-scope">
+        <div class="intro-screen screen-offers" id="intro-step-5" aria-live="polite" role="region" aria-label="Экран 6: Как это работает">
+          <!-- Фоновое изображение (если нужно) -->
+          <img class="intro4-bg" src="assets/images/scenes/playing.png?v=6" alt="" aria-hidden="true" style="display: none;">
+
+          <div class="tl-content">
+          <!-- Основной контент с фоном -->
+          <div class="row g-5 mb-5" style="position: relative; background-image: url('assets/images/scenes/playing.png?v=6'); background-size: cover; background-position: center; min-height: 500px;">
+            <!-- Карточка "Как это работает" справа поверх фона -->
+            <div class="col-12 col-md-6 col-lg-4 offset-lg-8 d-flex align-items-start" style="position: relative; z-index: 2;">
+              <div class="card shadow-lg">
+                <h2 class="card-title" tabindex="-1" autofocus>⚙️ Как это работает</h2>
+                <p class="card-text mt-4">Каждый урок — это интерактивное путешествие в реальные сценарии. Ты будешь:</p>
+                <ul class="list-unstyled mt-3">
+                  <li class="d-flex gap-3 mb-3">
+                    <span class="text-accent fw-bold">🎬</span>
+                    <span>Следить за историей Алекса и его команды</span>
+                  </li>
+                  <li class="d-flex gap-3 mb-3">
+                    <span class="text-accent fw-bold">🤔</span>
+                    <span>Разбирать сложные ситуации через кейсы</span>
+                  </li>
+                  <li class="d-flex gap-3 mb-3">
+                    <span class="text-accent fw-bold">✅</span>
+                    <span>Выполнять практические упражнения</span>
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span class="text-accent fw-bold">🎯</span>
+                    <span>Зарабатывать XP и разблокировать новые уровни</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Навигация и CTA -->
+          <div class="tl-nav-center" style="padding-top: 40px; padding-bottom: 8px;">
+            <button class="tl-btn tl-btn--ghost" onclick="handleIntroPrev()" aria-label="Предыдущий экран">← Назад</button>
+            <button class="tl-btn tl-btn--primary" onclick="Router.navigate('#/lesson/1')" aria-label="Начать первый урок">
+              🚀 Начать Урок 1
+            </button>
+          </div>
+        </div>
         </div>
       </div>
     `;
@@ -355,16 +525,22 @@ function renderIntro() {
     let screenContent = '';
     switch (currentStep) {
       case 1:
-        screenContent = renderStep1();
+        screenContent = renderStep1a();
         break;
       case 2:
-        screenContent = renderStep2();
+        screenContent = renderStep1b();
         break;
       case 3:
-        screenContent = renderStep3();
+        screenContent = renderStep2();
         break;
       case 4:
+        screenContent = renderStep3();
+        break;
+      case 5:
         screenContent = renderStep4();
+        break;
+      case 6:
+        screenContent = renderStep5();
         break;
     }
 
@@ -372,8 +548,10 @@ function renderIntro() {
       <div class="app-wrapper">
         ${renderNav()}
         ${renderMenuHTML()}
-        <div class="container fade-in">
-          ${screenContent}
+        <div class="tl-layout">
+          <div class="fade-in">
+            ${screenContent}
+          </div>
         </div>
       </div>
     `;
@@ -471,11 +649,12 @@ function renderHome() {
       <div class="app-wrapper">
         ${renderNav()}
         ${renderMenuHTML()}
-        <div class="container fade-in">
-          <h1 class="text-center">🎯 Team Lead Academy</h1>
-          <h2 class="text-center">Прокачай свои лидерские навыки</h2>
+        <div class="tl-layout">
+          <div class="fade-in">
+            <h1 class="text-center">🎯 Team Lead Academy</h1>
+            <h2 class="text-center">Прокачай свои лидерские навыки</h2>
 
-          <div class="card mt-md character-card">
+            <div class="card mt-md character-card">
             <img class="avatar" src="assets/images/characters/alex/neutral.png" alt="Алекс" onerror="this.style.visibility='hidden'">
             <div class="character-info">
               <h3>Карточка персонажа</h3>
@@ -488,9 +667,9 @@ function renderHome() {
                 ${renderSkillBar('Развитие команды', game.skills['team-development'] || 0)}
               </div>
             </div>
-          </div>
-          <div class="modules">
-            ${modulesHtml}
+            <div class="modules">
+              ${modulesHtml}
+            </div>
           </div>
         </div>
       </div>
@@ -514,10 +693,12 @@ function renderLesson(lessonId) {
     <div class="app-wrapper">
       ${renderNav()}
       ${renderMenuHTML()}
-      <div class="container fade-in">
-        <h1>Урок ${lessonId}</h1>
-        <div class="card" id="lesson-container">
-          <p>Загрузка урока...</p>
+      <div class="tl-layout">
+        <div class="fade-in">
+          <h1>Урок ${lessonId}</h1>
+          <div class="card" id="lesson-container">
+            <p>Загрузка урока...</p>
+          </div>
         </div>
       </div>
     </div>
@@ -656,10 +837,12 @@ function renderExam() {
     <div class="app-wrapper">
       ${renderNav()}
       ${renderMenuHTML()}
-      <div class="container fade-in">
-        <h1>Финальный экзамен</h1>
-        <div class="card">
-          <p>Симулятор экзамена будет реализован на отдельном этапе.</p>
+      <div class="tl-layout">
+        <div class="fade-in">
+          <h1>Финальный экзамен</h1>
+          <div class="card">
+            <p>Симулятор экзамена будет реализован на отдельном этапе.</p>
+          </div>
         </div>
       </div>
     </div>

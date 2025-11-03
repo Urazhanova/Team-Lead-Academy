@@ -1,0 +1,281 @@
+/* ============================================
+   MDB Typography Styles (Integrated with Brand Variables)
+   ============================================ */
+
+/* Display text */
+.display-1 {
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-family: var(--font-serif, 'PT Serif', Georgia, serif);
+}
+
+.display-2 {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-family: var(--font-serif, 'PT Serif', Georgia, serif);
+}
+
+.display-3 {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  font-family: var(--font-serif, 'PT Serif', Georgia, serif);
+}
+
+.display-4 {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 700;
+  line-height: 1.25;
+  font-family: var(--font-serif, 'PT Serif', Georgia, serif);
+}
+
+/* Headings */
+.lead {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.7;
+  font-family: var(--font-serif, 'PT Serif', Georgia, serif);
+  color: inherit;
+}
+
+.lead-lg {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.6;
+  font-family: var(--font-serif, 'PT Serif', Georgia, serif);
+}
+
+/* Text utilities */
+.text-muted {
+  color: var(--color-neutral-600, #6B6B6B) !important;
+}
+
+.text-light {
+  color: var(--color-neutral-500, #8A8A86) !important;
+}
+
+.text-dark {
+  color: var(--color-neutral-900, #1B1B1A) !important;
+}
+
+.text-primary {
+  color: var(--color-primary, #163F6F) !important;
+}
+
+.text-accent {
+  color: var(--color-accent, #7C0004) !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-start {
+  text-align: start;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-wrap {
+  white-space: normal;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.fw-light {
+  font-weight: 300;
+}
+
+.fw-normal {
+  font-weight: 400;
+}
+
+.fw-medium {
+  font-weight: 500;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.fst-italic {
+  font-style: italic;
+}
+
+.fst-normal {
+  font-style: normal;
+}
+
+.lh-1 {
+  line-height: 1;
+}
+
+.lh-sm {
+  line-height: 1.25;
+}
+
+.lh-base {
+  line-height: 1.5;
+}
+
+.lh-lg {
+  line-height: 1.75;
+}
+
+.lh-xl {
+  line-height: 2;
+}
+
+/* Letter spacing */
+.ls-tight {
+  letter-spacing: -0.02em;
+}
+
+.ls-normal {
+  letter-spacing: 0;
+}
+
+.ls-wide {
+  letter-spacing: 0.02em;
+}
+
+.ls-wider {
+  letter-spacing: 0.06em;
+}
+
+/* Mark / Highlight */
+mark,
+.mark {
+  padding: 0.2rem 0.4rem;
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-sm, 6px);
+}
+
+/* Abbreviation */
+abbr[title],
+abbr[data-bs-original-title] {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  cursor: help;
+  border-bottom: 1px dotted rgba(22, 63, 111, 0.25);
+}
+
+/* Lists */
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+.list-inline {
+  padding-left: 0;
+  list-style: none;
+}
+
+.list-inline-item {
+  display: inline-block;
+}
+
+.list-inline-item:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+/* Code */
+code,
+kbd,
+pre,
+samp {
+  font-family: 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+}
+
+code {
+  font-size: 0.875em;
+  color: var(--color-accent, #7C0004);
+  word-wrap: break-word;
+}
+
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+  font-size: 0.875em;
+  color: var(--color-neutral-900, #1B1B1A);
+  background-color: var(--color-neutral-100, #F5F5F3);
+  padding: 1rem;
+  border-radius: var(--radius-md, 12px);
+}
+
+pre code {
+  color: inherit;
+  word-break: normal;
+}
+
+/* Small text */
+small,
+.small {
+  font-size: 0.875em;
+}
+
+/* Blockquote */
+blockquote {
+  margin: 0 0 1rem;
+}
+
+/* Description list */
+dt {
+  font-weight: 700;
+}
+
+dd {
+  margin-bottom: 0.5rem;
+  margin-left: 0;
+}
+
+/* Horizontal rule */
+hr {
+  margin: 1.5rem 0;
+  opacity: 0.2;
+  border: 0;
+  border-top: 1px solid rgba(22, 63, 111, 0.2);
+}
+
+/* Text decorations */
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.text-decoration-underline {
+  text-decoration: underline;
+}
+
+.text-decoration-line-through {
+  text-decoration: line-through;
+}
