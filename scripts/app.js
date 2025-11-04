@@ -695,7 +695,6 @@ function renderLesson(lessonId) {
       ${renderMenuHTML()}
       <div class="tl-layout">
         <div class="fade-in">
-          <h1>Урок ${lessonId}</h1>
           <div class="card" id="lesson-container">
             <p>Загрузка урока...</p>
           </div>
@@ -739,7 +738,120 @@ function renderLessonContent(container, content) {
       </div>
     `;
 
-    let html = `<h3>${section.title || ''}</h3>`;
+    let html = '';
+
+    if (section.type === 'hero-intro') {
+      const textContent = typeof section.text === 'string'
+        ? section.text.split('\n').map(p => p.trim()).filter(p => p).map(p => `<p>${p}</p>`).join('')
+        : section.text.map(p => p ? `<p>${p}</p>` : '<br>').join('');
+
+      html = `
+        <div class="hero-intro-container">
+          <div class="hero-intro-image">
+            <img src="${section.image}" alt="${section.title}" class="hero-image">
+            <div class="hero-marker" id="maria-marker" style="left: 7%; top: 33%;">
+              <div class="marker-pulse"></div>
+              <span class="marker-text">i</span>
+            </div>
+            <div class="marker-tooltip" id="maria-tooltip" style="display: none;">
+              <p><strong>Мария</strong> — senior разработчик, 35 лет, очень опытная, но закрытая</p>
+            </div>
+            <div class="hero-marker" id="lena-marker" style="left: 62%; top: 39%;">
+              <div class="marker-pulse"></div>
+              <span class="marker-text">i</span>
+            </div>
+            <div class="marker-tooltip" id="lena-tooltip" style="display: none;">
+              <p><strong>Лена</strong> — дизайнер, 24 года, креативная, но неуверенная</p>
+            </div>
+            <div class="hero-marker" id="denis-marker" style="left: 20%; top: 33%;">
+              <div class="marker-pulse"></div>
+              <span class="marker-text">i</span>
+            </div>
+            <div class="marker-tooltip" id="denis-tooltip" style="display: none;">
+              <p><strong>Денис</strong> — middle разработчик, 26 лет, энергичный и активный</p>
+            </div>
+            <div class="hero-marker" id="igor-marker" style="left: 53%; top: 35%;">
+              <div class="marker-pulse"></div>
+              <span class="marker-text">i</span>
+            </div>
+            <div class="marker-tooltip" id="igor-tooltip" style="display: none;">
+              <p><strong>Игорь</strong> — QA engineer, 30 лет, перфекционист</p>
+            </div>
+            <div class="hero-marker" id="katya-marker" style="left: 12%; top: 37%;">
+              <div class="marker-pulse"></div>
+              <span class="marker-text">i</span>
+            </div>
+            <div class="marker-tooltip" id="katya-tooltip" style="display: none;">
+              <p><strong>Катя</strong> — junior разработчик, 22 года, только год в профессии</p>
+            </div>
+          </div>
+          <div class="hero-intro-content">
+            <div class="hero-intro-text">
+              ${textContent}
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      html = `<h3>${section.title || ''}</h3>`;
+    }
+
+    if (section.type === 'theory-content') {
+      html = `
+        <section class="vh-100 d-flex flex-column justify-content-between">
+          <div class="container pt-4">
+            <h2 class="h2 fade-up" style="animation-delay: 0ms">${section.title}</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-5 align-items-stretch">
+              ${section.sections.map((sec, idx) => `
+                <div class="col fade-up" style="animation-delay: ${(idx + 1) * 100}ms">
+                  <div class="card h-100 theory-section-card">
+                    <h3 class="card-title theory-section-heading">${sec.heading}</h3>
+                    <ul class="theory-items">
+                      ${sec.items.map((item, itemIdx) => `
+                        <li class="theory-item fade-up" style="animation-delay: ${(idx + 1) * 100 + (itemIdx + 1) * 50}ms">${item}</li>
+                      `).join('')}
+                    </ul>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          <div class="container pb-4 d-flex justify-content-between"></div>
+        </section>
+      `;
+    }
+
+    if (section.type === 'theory-oneone') {
+      html = `
+        <div class="theory-oneone-wrapper">
+          <div class="container">
+            <div class="theory-oneone-grid">
+              <!-- Left Column: 1-on-1 Content -->
+              <div class="theory-oneone-content">
+                <div class="card theory-oneone-card fade-up" style="animation-delay: 0ms">
+                  <h3 class="h3 theory-oneone-title">${section.oneOnOne.title}</h3>
+                  <p class="theory-oneone-text">${section.oneOnOne.description}</p>
+                </div>
+              </div>
+
+              <!-- Right Column: Media Frame -->
+              <div class="theory-oneone-media fade-up" style="animation-delay: 100ms">
+                <div class="media-frame">
+                  ${section.image
+                    ? `<img src="${section.image}" alt="Иллюстрация" class="theory-media-image" />`
+                    : `<svg viewBox="0 0 16 9" class="aspect-video-placeholder">
+                        <rect width="16" height="9" fill="var(--color-neutral-100)" stroke="var(--color-border)" stroke-width="0.1"/>
+                        <text x="8" y="4.5" text-anchor="middle" dominant-baseline="middle" font-size="1" fill="var(--color-neutral-500)">Медиа</text>
+                      </svg>`
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     if (section.type === 'intro' && Array.isArray(section.text)) {
       html += section.text.map(p => `<p>${p}</p>`).join('');
     }
@@ -782,13 +894,203 @@ function renderLessonContent(container, content) {
 
     container.innerHTML = html + nav;
 
-    // Навешиваем обработчики
-    const btns = container.querySelectorAll('.btn');
+    // Для экрана theory-content кнопки размещаются внутри section
+    if (section.type === 'theory-content') {
+      const navContainer = container.querySelector('.pb-4.d-flex.justify-content-between');
+      if (navContainer) {
+        const navButtons = `
+          <button class="btn btn-outline" ${currentIndex === 0 ? 'disabled' : ''} id="nav-back">Назад</button>
+          <button class="btn" id="nav-next">Далее</button>
+        `;
+        navContainer.innerHTML = navButtons;
+        const backBtn = navContainer.querySelector('#nav-back');
+        const nextBtn = navContainer.querySelector('#nav-next');
+        if (backBtn && nextBtn) {
+          backBtn.onclick = () => { if (currentIndex > 0) { currentIndex--; renderSection(); } };
+          nextBtn.onclick = () => { if (currentIndex < content.sections.length - 1) { currentIndex++; renderSection(); } };
+        }
+      }
+    }
+
+    // Навешиваем обработчики для остальных типов
+    const btns = container.querySelectorAll('.btn:not(#nav-back):not(#nav-next)');
     if (btns.length >= 2) {
       const back = btns[0];
       const next = btns[1];
       back.onclick = () => { if (currentIndex > 0) { currentIndex--; renderSection(); } };
       next.onclick = () => { if (currentIndex < content.sections.length - 1) { currentIndex++; renderSection(); } };
+    }
+
+    // Обработчик для маркера (hero-intro)
+    const mariaMarker = container.querySelector('#maria-marker');
+    const mariaTooltip = container.querySelector('#maria-tooltip');
+    if (mariaMarker && mariaTooltip) {
+      const positionTooltip = () => {
+        const markerRect = mariaMarker.getBoundingClientRect();
+        const containerRect = mariaMarker.parentElement.getBoundingClientRect();
+
+        // Позиционируем tooltip справа от маркера с отступом 12px
+        let offsetLeft = markerRect.left - containerRect.left + markerRect.width / 2 + 12;
+        let offsetTop = markerRect.top - containerRect.top - markerRect.height / 4;
+
+        mariaTooltip.style.left = offsetLeft + 'px';
+        mariaTooltip.style.top = offsetTop + 'px';
+      };
+
+      mariaMarker.style.cursor = 'pointer';
+      mariaMarker.onclick = (e) => {
+        e.stopPropagation();
+        mariaMarker.classList.add('viewed');
+        if (mariaTooltip.style.display === 'none') {
+          mariaTooltip.style.display = 'block';
+          setTimeout(positionTooltip, 0);
+        } else {
+          mariaTooltip.style.display = 'none';
+        }
+      };
+      // Закрытие при клике вне маркера
+      document.addEventListener('click', () => {
+        mariaTooltip.style.display = 'none';
+      });
+      mariaMarker.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Обработчик для маркера Лены (hero-intro)
+    const lenaMarker = container.querySelector('#lena-marker');
+    const lenaTooltip = container.querySelector('#lena-tooltip');
+    if (lenaMarker && lenaTooltip) {
+      const positionLenaTooltip = () => {
+        const markerRect = lenaMarker.getBoundingClientRect();
+        const containerRect = lenaMarker.parentElement.getBoundingClientRect();
+
+        // Позиционируем tooltip слева от маркера с отступом 12px
+        const tooltipWidth = lenaTooltip.clientWidth;
+        let offsetLeft = markerRect.left - containerRect.left - tooltipWidth - 12;
+        let offsetTop = markerRect.top - containerRect.top - markerRect.height / 4;
+
+        lenaTooltip.style.left = offsetLeft + 'px';
+        lenaTooltip.style.top = offsetTop + 'px';
+      };
+
+      lenaMarker.style.cursor = 'pointer';
+      lenaMarker.onclick = (e) => {
+        e.stopPropagation();
+        lenaMarker.classList.add('viewed');
+        if (lenaTooltip.style.display === 'none') {
+          lenaTooltip.style.display = 'block';
+          setTimeout(positionLenaTooltip, 0);
+        } else {
+          lenaTooltip.style.display = 'none';
+        }
+      };
+      // Закрытие при клике вне маркера
+      document.addEventListener('click', () => {
+        lenaTooltip.style.display = 'none';
+      });
+      lenaMarker.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Обработчик для маркера Дениса (hero-intro)
+    const denisMarker = container.querySelector('#denis-marker');
+    const denisTooltip = container.querySelector('#denis-tooltip');
+    if (denisMarker && denisTooltip) {
+      const positionDenisTooltip = () => {
+        const markerRect = denisMarker.getBoundingClientRect();
+        const containerRect = denisMarker.parentElement.getBoundingClientRect();
+
+        // Позиционируем tooltip справа от маркера с отступом 12px
+        let offsetLeft = markerRect.left - containerRect.left + markerRect.width / 2 + 12;
+        let offsetTop = markerRect.top - containerRect.top - markerRect.height / 4;
+
+        denisTooltip.style.left = offsetLeft + 'px';
+        denisTooltip.style.top = offsetTop + 'px';
+      };
+
+      denisMarker.style.cursor = 'pointer';
+      denisMarker.onclick = (e) => {
+        e.stopPropagation();
+        denisMarker.classList.add('viewed');
+        if (denisTooltip.style.display === 'none') {
+          denisTooltip.style.display = 'block';
+          setTimeout(positionDenisTooltip, 0);
+        } else {
+          denisTooltip.style.display = 'none';
+        }
+      };
+      // Закрытие при клике вне маркера
+      document.addEventListener('click', () => {
+        denisTooltip.style.display = 'none';
+      });
+      denisMarker.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Обработчик для маркера Игоря (hero-intro)
+    const igorMarker = container.querySelector('#igor-marker');
+    const igorTooltip = container.querySelector('#igor-tooltip');
+    if (igorMarker && igorTooltip) {
+      const positionIgorTooltip = () => {
+        const markerRect = igorMarker.getBoundingClientRect();
+        const containerRect = igorMarker.parentElement.getBoundingClientRect();
+
+        // Позиционируем tooltip слева от маркера с отступом 12px
+        const tooltipWidth = igorTooltip.clientWidth;
+        let offsetLeft = markerRect.left - containerRect.left - tooltipWidth - 12;
+        let offsetTop = markerRect.top - containerRect.top - markerRect.height / 4;
+
+        igorTooltip.style.left = offsetLeft + 'px';
+        igorTooltip.style.top = offsetTop + 'px';
+      };
+
+      igorMarker.style.cursor = 'pointer';
+      igorMarker.onclick = (e) => {
+        e.stopPropagation();
+        igorMarker.classList.add('viewed');
+        if (igorTooltip.style.display === 'none') {
+          igorTooltip.style.display = 'block';
+          setTimeout(positionIgorTooltip, 0);
+        } else {
+          igorTooltip.style.display = 'none';
+        }
+      };
+      // Закрытие при клике вне маркера
+      document.addEventListener('click', () => {
+        igorTooltip.style.display = 'none';
+      });
+      igorMarker.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Обработчик для маркера Кати (hero-intro)
+    const katyaMarker = container.querySelector('#katya-marker');
+    const katyaTooltip = container.querySelector('#katya-tooltip');
+    if (katyaMarker && katyaTooltip) {
+      const positionKatyaTooltip = () => {
+        const markerRect = katyaMarker.getBoundingClientRect();
+        const containerRect = katyaMarker.parentElement.getBoundingClientRect();
+
+        // Позиционируем tooltip справа от маркера с отступом 12px
+        let offsetLeft = markerRect.left - containerRect.left + markerRect.width / 2 + 12;
+        let offsetTop = markerRect.top - containerRect.top - markerRect.height / 4;
+
+        katyaTooltip.style.left = offsetLeft + 'px';
+        katyaTooltip.style.top = offsetTop + 'px';
+      };
+
+      katyaMarker.style.cursor = 'pointer';
+      katyaMarker.onclick = (e) => {
+        e.stopPropagation();
+        katyaMarker.classList.add('viewed');
+        if (katyaTooltip.style.display === 'none') {
+          katyaTooltip.style.display = 'block';
+          setTimeout(positionKatyaTooltip, 0);
+        } else {
+          katyaTooltip.style.display = 'none';
+        }
+      };
+      // Закрытие при клике вне маркера
+      document.addEventListener('click', () => {
+        katyaTooltip.style.display = 'none';
+      });
+      katyaMarker.addEventListener('click', (e) => e.stopPropagation());
     }
 
     if (section.type === 'case') {

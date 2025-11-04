@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Брендбук — Dev Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;600;700&family=PT+Serif:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./variables.css">
+  <style>
+    .swatch{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid rgba(22,63,111,.15);border-radius:12px;background:#fff}
+    .swatch .box{width:48px;height:32px;border-radius:8px;border:1px solid rgba(0,0,0,.05)}
+    .kicker{font: var(--fw-micro) var(--fz-micro)/var(--lh-micro) var(--font-sans); letter-spacing: var(--ls-micro); text-transform: uppercase; color: var(--color-primary);}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="nav">
+      <div class="tag">Брендбук</div>
+      <a aria-current="page" href="#">Обзор</a>
+      <a href="#type">Типографика</a>
+      <a href="#colors">Цвета</a>
+      <a href="#components">Компоненты</a>
+    </header>
+
+    <section class="section">
+      <p class="kicker">Концепт</p>
+      <h1 class="h1">Интеллект и эмоция</h1>
+      <p class="lead">Глубокий тёмно-синий для структуры и смысла, бордовый — для акцентов и действия. Воздух, линии, иерархия.</p>
+      <div style="height:1px;background:rgba(22,63,111,.25);margin:32px 0"></div>
+    </section>
+
+    <section id="type" class="section">
+      <p class="kicker">Типографика</p>
+      <div class="card">
+        <div class="h1">Заголовок H1</div>
+        <div class="h2">Подзаголовок H2</div>
+        <div class="h3">Подзаголовок H3</div>
+        <p>Основной текст. Используйте умеренную длину строки (60–80 знаков) и достаточные поля. <em>Курсив</em> — для акцентов смысла.</p>
+        <p class="micro">Микротекст / лейбл</p>
+      </div>
+    </section>
+
+    <section id="colors" class="section">
+      <p class="kicker">Цвета</p>
+      <div class="grid">
+        <div class="swatch" style="grid-column: span 6;">
+          <div class="box" style="background:#163F6F"></div>
+          <div><strong>Primary</strong><br><code>#163F6F</code></div>
+        </div>
+        <div class="swatch" style="grid-column: span 6;">
+          <div class="box" style="background:#7C0004"></div>
+          <div><strong>Accent</strong><br><code>#7C0004</code></div>
+        </div>
+        <div class="swatch" style="grid-column: span 6;">
+          <div class="box" style="background:#F5F5F3"></div>
+          <div><strong>Neutral 100</strong><br><code>#F5F5F3</code></div>
+        </div>
+        <div class="swatch" style="grid-column: span 6;">
+          <div class="box" style="background:#6B6B6B"></div>
+          <div><strong>Neutral 600</strong><br><code>#6B6B6B</code></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="components" class="section">
+      <p class="kicker">Компоненты</p>
+      <div class="grid">
+        <div class="card" style="grid-column: span 6;">
+          <div class="h3">Кнопки</div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a class="button button--primary" href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Primary</a>
+            <a class="button button--secondary" href="#">Secondary</a>
+            <a class="button button--ghost" href="#">Ghost</a>
+          </div>
+        </div>
+
+        <div class="card" style="grid-column: span 6;">
+          <div class="h3">Поля ввода</div>
+          <label class="micro" for="i1">Email</label><br>
+          <input class="input" id="i1" type="email" placeholder="you@example.com" />
+        </div>
+
+        <div class="card" style="grid-column: span 6;">
+          <div class="h3">Цитата</div>
+          <blockquote class="quote">Дизайн — это способ мыслить о смысле и пути пользователя, а не про украшение.</blockquote>
+        </div>
+
+        <div class="card" style="grid-column: span 6;">
+          <div class="h3">Чип / Тэг</div>
+          <div class="chip"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg> Новое</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <hr>
+      <p class="micro">© Брендбук. Контраст текста ≥ 4.5. Фокус — акцентным цветом.</p>
+    </footer>
+  </div>
+</body>
+</html>
